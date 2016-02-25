@@ -1,0 +1,15 @@
+php:
+  build: "./php"
+  container_name: "wordpress"
+  ports:
+    - "88:80"
+  volumes:
+    - "./www:/var/www/html"
+  links:
+    - "db:mariadb"
+db:
+  image: mariadb:10.1
+  volumes:
+    - "./mariadb/datadir:/var/lib/mysql"
+  environment:
+    MYSQL_ROOT_PASSWORD: "123456"
